@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/templates/template.xhtml">
+        <ui:define name="titulo">Chat</ui:define>      
+        <ui:define name="conteudo">    
+            <h1>
+                Nome Sessão:
+                <h:outputLabel value="#{controleMensagem.usuario}"/> 
+            </h1>
+            <p:messages/>
+            <h:form id="formUsu">             
+                <h:panelGroup >
+                    <div class="ui-fluid" style="width: 40%">
+
+                        <h:form id="form" >
+                            <p:dataList value="#{controleMensagem.beanChat.listaUsuarios}" var="usu" type="ordered">
+                                <f:facet name="header">
+                                    #{msgs['chat.titulo.usuario']}                                 
+                                </f:facet>
+                                #{usu}
+                            </p:dataList>
+                        </h:form>
+                        <p:commandButton icon="" title="#{msgs['chat.sair']}"
+                                         actionListener="#{controleUsuario.removerUsuario()}"
+                                         action="#{controleMensagem.inicioChat()}"/>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+            <br />
+            <br />
+            <h:form id="formMsg">
+                <h:panelGroup >
+                    <div class="ui-fluid" style="width: 100%">
+                        <h:form>
+                            <h:outputLabel value="#{msgs['chat.titulo.mensagem']}"/>
+                            <h:inputText value="#{controleMensagem.beanChat.msg}"/>
+                            <h:commandButton value="#{msgs['chat.enviar']}" 
+                                             action="#{controleMensagem.escreveMensagem()}"/>
+                        </h:form >
+                    </div>
+                    <br />
+                    <div class="ui-fluid" style="width: 100%">
+                        <h:form id="form" >
+                            <p:dataList value="#{controleMensagem.beanChat.listaMensagem }" var="mensagem" type="ordered">
+                                <f:facet name="header">
+                                    Chat
+                                </f:facet>
+                                #{mensagem}
+                            </p:dataList>
+                        </h:form>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition> 
+</html>
+
