@@ -9,21 +9,25 @@ import br.edu.ifsul.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Singleton;
+import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
+import javax.faces.application.ViewHandler;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
-import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
+
 
 /**
  *
  * @author V_M_FT
  */
 @Singleton
+
 public class BeanChat {
 
     private List<String> listaMensagem = new ArrayList<>();
-    @NotBlank (message = "A Mensagem não pode estar em branco! ")
-    @NotNull (message = "A Mensagem Não pode ser Nula")
+    
+   @NotBlank(message = "{beanChat.mensagem.notblank}")
     private String msg;
     private List<String> listaUsuarios = new ArrayList<>();
    
@@ -32,18 +36,20 @@ public class BeanChat {
     public BeanChat() {
     }
 
-    public String adicionarUsuario(String usuario) {
+    public Boolean adicionarUsuario(String usuario) {
         System.out.println("Chegou no Adicionar Usuario");
         if (listaUsuarios.contains(usuario)) {
             FacesMessage msg3 = new FacesMessage("Este Nome de Usuario não está disponivel!");
             FacesContext.getCurrentInstance().addMessage(null, msg3);
+            return false;
         } else {
             listaUsuarios.add(usuario);
             listaMensagem.add(usuario + " entrou!");
             FacesMessage msg2 = new FacesMessage("Usuario Adicionado a Lista com Sucesso!");
             FacesContext.getCurrentInstance().addMessage(null, msg2);
+       return true;
         }
-        return "/teste/chat?faces-redirect=true";
+        
     }
 
      public String removerUsuario(String usuario) {
@@ -63,7 +69,7 @@ public class BeanChat {
         listaMensagem.add(usuario + " disse: " + msg);
         msg = "";
        // return "/teste/chat?faces-redirect=true";
-       
+     
     }
 
     public List<String> getListaMensagem() {
@@ -97,4 +103,7 @@ public class BeanChat {
     public void setListaUsuarios(List<String> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
     }
+    
+    
+  
 }

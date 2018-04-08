@@ -32,8 +32,14 @@ public class ControleUsuario implements Serializable{
     }
     
     public String informarUsuario(){
-        beanChat.adicionarUsuario(beanUsuario.getUsuario());
+        
+        if (beanChat.adicionarUsuario(beanUsuario.getUsuario())){
         return "/teste/chat?faces-redirect=true";
+        }else
+        {
+          return "";
+        }
+        
     }
     
      public void removerUsuario(){
