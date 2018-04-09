@@ -1,49 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.edu.ifsul.controle;
 
 import java.io.Serializable;
 import java.util.Locale;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
-
 /**
  *
  * @author V_M_FT
  */
 @ManagedBean(name = "controleLocale")
-@SessionScoped
+@javax.faces.bean.SessionScoped
 public class ControleLocale implements Serializable {
 
     private Locale currentLocale = new Locale("pt", "BR");
 
     public ControleLocale() {
-
     }
-
-    public void englishLocale() {
+    
+    public void englishLocale(){
         UIViewRoot uiViewRoot = FacesContext.getCurrentInstance().getViewRoot();
         currentLocale = Locale.US;
         uiViewRoot.setLocale(currentLocale);
     }
-
-    public void portugueseLocale() {
+        
+    public void portugueseLocale(){
         UIViewRoot uiViewRoot = FacesContext.getCurrentInstance().getViewRoot();
         currentLocale = new Locale("pt", "BR");
         uiViewRoot.setLocale(currentLocale);
-    }
-
+    }    
+    
     public Locale getCurrentLocale() {
         return currentLocale;
     }
 
-    public void setCurrentLocale(Locale currLocale) {
-        this.currentLocale = currLocale;
+    public void setCurrentLocale(Locale currentLocale) {
+        this.currentLocale = currentLocale;
     }
-
 }

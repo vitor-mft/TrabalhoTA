@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package EJB;
 
 import br.edu.ifsul.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Singleton;
-import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.ViewHandler;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 
@@ -26,9 +19,9 @@ import org.hibernate.validator.constraints.NotBlank;
 public class BeanChat {
 
     private List<String> listaMensagem = new ArrayList<>();
-    
-   @NotBlank(message = "{beanChat.mensagem.notblank}")
-    private String msg;
+     @NotBlank(message = "{beanchat.mensagem.notblank}")
+     @NotNull(message = "{beanChat.mensagem.notnull}")
+       private String msg;
     private List<String> listaUsuarios = new ArrayList<>();
    
    // private String usuario;
@@ -39,14 +32,14 @@ public class BeanChat {
     public Boolean adicionarUsuario(String usuario) {
         System.out.println("Chegou no Adicionar Usuario");
         if (listaUsuarios.contains(usuario)) {
-            FacesMessage msg3 = new FacesMessage("Este Nome de Usuario não está disponivel!");
-            FacesContext.getCurrentInstance().addMessage(null, msg3);
+           // FacesMessage msg3 = new FacesMessage("Este Nome de Usuario não está disponivel!");
+          //  FacesContext.getCurrentInstance().addMessage(null, msg3);
             return false;
         } else {
             listaUsuarios.add(usuario);
-            listaMensagem.add(usuario + " entrou!");
-            FacesMessage msg2 = new FacesMessage("Usuario Adicionado a Lista com Sucesso!");
-            FacesContext.getCurrentInstance().addMessage(null, msg2);
+            listaMensagem.add(usuario + " " + Util.getMensagemInternacionalizada("msg.entrou"));
+           // FacesMessage msg2 = new FacesMessage("Usuario Adicionado a Lista com Sucesso!");
+          //  FacesContext.getCurrentInstance().addMessage(null, msg2);
        return true;
         }
         
@@ -55,18 +48,18 @@ public class BeanChat {
      public String removerUsuario(String usuario) {
         //System.out.println("Chegou no Adicionar Usuario");
        listaUsuarios.remove(usuario);
-       listaMensagem.add(usuario + " saiu!");
+       
+       listaMensagem.add(usuario + " " +Util.getMensagemInternacionalizada("msg.saiu")+" "+ " saiu!");
         return "index?faces-redirect=true";
     }
 
+     
+     //Nesta Caso Preciso internacionalizar a palavra Disse isso é posivel ? 
+     
     public void adicionarMensagem(String usuario) {
-        //isso se faz para ter acesso as msg de Internacionalização
-        FacesMessage teste = new FacesMessage(FacesMessage.SEVERITY_INFO,
-                Util.getMensagemInternacionalizada("msg.dissee"),"");
-        //Aqui deveria mostrar a mensagem que esta dentro do 
-        System.out.println(teste);
-        System.out.println("Chegou no Adicionar Mensagem ");
-        listaMensagem.add(usuario + " disse: " + msg);
+       
+       // System.out.println("Chegou no Adicionar Mensagem ");
+        listaMensagem.add(usuario + " " + Util.getMensagemInternacionalizada("msg.disse")+ " " + msg);
         msg = "";
        // return "/teste/chat?faces-redirect=true";
      
