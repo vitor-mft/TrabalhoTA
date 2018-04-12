@@ -11,7 +11,7 @@
                 <h:form id="formEntrar">
                     <p:messages/>
                     <h:outputLabel value="#{msgs['chat.titulo.usuario']} " id="formUsu"/>
-                    <h:inputText value="#{controleUsuario.beanUsuario.usuario}" />
+                    <h:inputText autocomplete="off" value="#{controleUsuario.beanUsuario.usuario}" />
                     <p:poll interval="3"  update="formUsu" />
                     <h:commandButton value="#{msgs['chat.entrar']}" 
                                      action="#{controleUsuario.informarUsuario()}"/>

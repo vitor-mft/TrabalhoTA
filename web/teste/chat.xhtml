@@ -39,7 +39,7 @@
                     <div class="ui-fluid" style="width: 100%">
                         <h:form>
                             <h:outputLabel value="#{msgs['chat.titulo.mensagem']}"/>
-                            <h:inputText value="#{controleMensagem.beanChat.msg}"/>
+                            <h:inputText autocomplete="off" value="#{controleMensagem.beanChat.msg}"/>
                             <h:commandButton value="#{msgs['chat.enviar']}" 
                                              action="#{controleMensagem.escreveMensagem()}"/>
                         </h:form >
