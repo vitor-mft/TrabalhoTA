@@ -9,14 +9,19 @@
         <ui:define name="conteudo">
             <div class="ui-fluid" style="width: 100%">
                 <h:form id="formEntrar">
-                      <p:messages/>
-                    <h:outputLabel value="#{msgs['chat.titulo.usuario']} "/>
-                     <h:inputText value="#{controleUsuario.beanUsuario.usuario}"/>
-                     <h:commandButton value="#{msgs['chat.entrar']}" 
-                                      action="#{controleUsuario.informarUsuario()}"/>
+                    <p:messages/>
+                    <h:outputLabel value="#{msgs['chat.titulo.usuario']} " id="formUsu"/>
+                    <h:inputText value="#{controleUsuario.beanUsuario.usuario}" />
+                    <p:poll interval="3"  update="formUsu" />
+                    <h:commandButton value="#{msgs['chat.entrar']}" 
+                                     action="#{controleUsuario.informarUsuario()}"/>
                 </h:form >
+
+               
             </div>
         </ui:define>     
     </ui:composition> 
+
+
 </html>
 

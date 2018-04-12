@@ -98,5 +98,12 @@ public class BeanChat {
     }
     
     
+      public List<String> atualiza(){
+        return getListaMensagem();
+    }
+       public List<String> atualizaMSG(){
+        return getListaUsuarios();
+    }
+    
   
 }

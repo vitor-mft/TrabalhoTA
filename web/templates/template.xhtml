@@ -15,9 +15,7 @@
                 <h:form id="formMenu">
                     <b:navBar brand="TA">
                         <b:navbarLinks>
-                            <b:navLink value="#{msgs['chat.inicio']}" outcome="inicio"/>
-                            <b:navLink value="Chat" outcome="#{controleMensagem.listaChat()}"/>
-                            <b:dropMenu value="Idiomas">
+                           <b:dropMenu value="Idiomas">
                                 <b:navCommandLink value="Português"
                                                    update=":conteudo"
                                                   action="#{controleLocale.portugueseLocale()}"/>

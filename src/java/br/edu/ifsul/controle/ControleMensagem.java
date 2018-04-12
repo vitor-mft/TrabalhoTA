@@ -3,6 +3,7 @@ package br.edu.ifsul.controle;
 import EJB.BeanChat;
 import EJB.BeanUsuario;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -68,5 +69,10 @@ public class ControleMensagem implements Serializable {
     public void setControleUsuario(ControleUsuario controleUsuario) {
         this.controleUsuario = controleUsuario;
     }
+    
+    
+   
+    
+    
 
 }
